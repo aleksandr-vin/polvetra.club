@@ -1,0 +1,17 @@
+<h2>Attendees</h2>
+
+<p>{{ attendees?.length }}</p>
+
+<button type="button" (click)="add.emit()">Add Random</button>
+
+<div *ngFor="let attendee of attendees">
+  <h3>{{ attendee.name }} age: {{ attendee.age }} tags: {{ attendee.age }}</h3>
+  <p>
+    {{ (attendee.gender == "F" && "🧜‍♀️") || "" }}
+    {{ (attendee.gender == "M" && "👨‍🏭") || "" }}
+    {{ attendee.sail_exp }}
+    rating: {{ attendee.skipper_rating }}
+  </p>
+  <p>group_id: {{ attendee.group_id }}</p>
+  <button type="button" (click)="delete.emit(attendee)">Delete</button>
+</div>
