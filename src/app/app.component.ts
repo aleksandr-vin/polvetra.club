@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Attendee } from './attendee';
 import { Args } from './solverArgs';
 import { Boat, Cabin } from './boat';
+import {
+  ConsatisfactionResponse,
+  ConsatisfactionService,
+} from './consatisfaction.service';
 
 function getRandomName(): string {
   return 'jay-' + Math.floor(Math.random() * 1000).toString();
@@ -21,6 +25,8 @@ function randomChoice<A>(items: A[]): A {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  constructor(private consatisfactionService: ConsatisfactionService) {}
+
   // implement OnInit's `ngOnInit` method
   ngOnInit() {
     this.addRandomAttendee();
@@ -88,7 +94,7 @@ export class AppComponent implements OnInit {
         'пассажир',
         'ни разу не бывал на яхте',
       ]),
-      skipper_rating: randomChoice([0, 0, 0, 0.5, 0.5, 1]),
+      skipper_rating: randomChoice([0, 0.5, 1, 1]),
       group_id: randomChoice([
         -1,
         -1,
@@ -97,11 +103,26 @@ export class AppComponent implements OnInit {
         -1,
         ...Array.from(Array(this.groupsCount).keys()),
       ]),
-      tags: randomChoice(['', '', '', '', '', '', 'kids', 'kids', 'no-kids']),
+      tags: randomChoice(['', '', '', '', '', '', '', '', 'no-kids']),
     });
   }
 
+  consatisfactionResponse?: ConsatisfactionResponse;
+  consatisfactionResponseArgs?: string;
+  consatisfactionResponseMeta?: string;
+
   assignAttendeesToBoats() {
-    alert('TBD');
+    this.consatisfactionService
+      .getSolutionFor(this.solverArgs, this.boats, this.attendees)
+      .subscribe((data: ConsatisfactionResponse) => {
+        console.log(data);
+        this.consatisfactionResponse = data;
+        this.consatisfactionResponseArgs = JSON.stringify(
+          this.consatisfactionResponse.args
+        );
+        this.consatisfactionResponseMeta = JSON.stringify(
+          this.consatisfactionResponse.meta
+        );
+      });
   }
 }

@@ -14,15 +14,65 @@
   Assign attendees to boats
 </button>
 
+<div *ngIf="consatisfactionResponse">
+  <pre>
+    solution: {{ consatisfactionResponse.result.solution.toString() }}
+    captain_groups: {{
+      consatisfactionResponse.result.captain_groups.toString()
+    }}
+    kids_groups: {{ consatisfactionResponse.result.kids_groups.toString() }}
+    no_kids_groups: {{
+      consatisfactionResponse.result.no_kids_groups.toString()
+    }}
+    odd_gender_groups: {{
+      consatisfactionResponse.result.odd_gender_groups.toString()
+    }}
+    
+    capacities: {{ consatisfactionResponse.result.capacities.toString() }}
+    boats: {{ consatisfactionResponse.result.boats.toString() }}
+    
+    objective_value: {{ consatisfactionResponse.result.objective_value }}
+    gender_disparity_weight: {{
+      consatisfactionResponse.result.gender_disparity_weight
+    }}
+    lambda_weight: {{ consatisfactionResponse.result.lambda_weight }}
+
+    args: {{ consatisfactionResponseArgs }}
+    meta: {{ consatisfactionResponseMeta }}
+    consatisfaction.version_info: {{
+      consatisfactionResponse["consatisfaction.version_info"]
+    }}
+  </pre>
+  <h3>Assignments</h3>
+  <ol>
+    <div
+      *ngFor="let group of consatisfactionResponse.result.groups; let i = index"
+    >
+      <li>
+        Boat
+        {{
+          consatisfactionResponse.result.solution &&
+          consatisfactionResponse.result.solution.length > 0
+            ? consatisfactionResponse.result.solution[i]
+            : "-"
+        }}:
+        <span *ngFor="let attendee of group; let isLast = last"
+          >{{ attendee.name }}{{ isLast ? "" : ", " }}
+        </span>
+      </li>
+    </div>
+  </ol>
+</div>
+
 <hr />
 
 <h2>Boats</h2>
 <button type="button" (click)="onAddBoat()">Add Random</button>
 
 <ul>
-  <div *ngFor="let boat of boats">
+  <div *ngFor="let boat of boats; let i = index">
     <li>
-      cabins berths:
+      Boat {{ i }} cabins berths:
       <span *ngFor="let cabin of boat.cabins; let isLast = last"
         >{{ cabin.berths }}{{ isLast ? "" : ", " }} </span
       ><button type="button" (click)="onDeleteBoat(boat)">Delete</button>
