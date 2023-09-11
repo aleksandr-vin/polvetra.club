@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
     this.addRandomBoat();
   }
 
-  title = 'Распределялка по лодкам (⍺-тестирование)';
+  title = 'Лодочник'; // (⍺-тестирование)
   attendees: Attendee[] = [];
   groupsCount: number = 5;
   solverArgs: Args = {
@@ -49,6 +49,8 @@ export class AppComponent implements OnInit {
     gender_disparity_weight: 100,
   };
   boats: Boat[] = [];
+
+  consatisfactionComputing: boolean = false;
 
   onDelete(attendee: Attendee) {
     this.attendees.forEach((value, index) => {
@@ -113,20 +115,27 @@ export class AppComponent implements OnInit {
   consatisfactionResponseResultBoats?: string;
 
   assignAttendeesToBoats() {
-    this.consatisfactionService
-      .getSolutionFor(this.solverArgs, this.boats, this.attendees)
-      .subscribe((data: ConsatisfactionResponse) => {
-        console.log(data);
-        this.consatisfactionResponse = data;
-        this.consatisfactionResponseArgs = JSON.stringify(
-          this.consatisfactionResponse.args
-        );
-        this.consatisfactionResponseMeta = JSON.stringify(
-          this.consatisfactionResponse.meta
-        );
-        this.consatisfactionResponseResultBoats = JSON.stringify(
-          this.consatisfactionResponse.result.boats
-        );
-      });
+    this.consatisfactionComputing = true;
+    let call = this.consatisfactionService.getSolutionFor(
+      this.solverArgs,
+      this.boats,
+      this.attendees
+    );
+    call.subscribe((data: ConsatisfactionResponse) => {
+      console.log(data);
+      this.consatisfactionResponse = data;
+      this.consatisfactionResponseArgs = JSON.stringify(
+        this.consatisfactionResponse.args
+      );
+      this.consatisfactionResponseMeta = JSON.stringify(
+        this.consatisfactionResponse.meta
+      );
+      this.consatisfactionResponseResultBoats = JSON.stringify(
+        this.consatisfactionResponse.result.boats
+      );
+    });
+    call.subscribe((data: ConsatisfactionResponse) => {
+      this.consatisfactionComputing = false;
+    });
   }
 }
