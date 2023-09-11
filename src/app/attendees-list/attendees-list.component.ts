@@ -4,7 +4,7 @@ import { Attendee } from '../attendee';
 @Component({
   selector: 'app-attendees-list',
   templateUrl: './attendees-list.component.html',
-  styleUrls: ['./attendees-list.component.css'],
+  styleUrls: ['./attendees-list.component.scss'],
 })
 export class AttendeesListComponent {
   @Input() attendees?: Attendee[];
