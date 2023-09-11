@@ -29,7 +29,7 @@
     }}
     
     capacities: {{ consatisfactionResponse.result.capacities.toString() }}
-    boats: {{ consatisfactionResponse.result.boats.toString() }}
+    boats: {{ consatisfactionResponseResultBoats }}
     
     objective_value: {{ consatisfactionResponse.result.objective_value }}
     gender_disparity_weight: {{
@@ -39,8 +39,8 @@
 
     args: {{ consatisfactionResponseArgs }}
     meta: {{ consatisfactionResponseMeta }}
-    consatisfaction.version_info: {{
-      consatisfactionResponse["consatisfaction.version_info"]
+    consatisfaction_gversion_info: {{
+      consatisfactionResponse.consatisfaction_version_info
     }}
   </pre>
   <h3>Assignments</h3>

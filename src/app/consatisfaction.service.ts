@@ -28,7 +28,7 @@ export interface ConsatisfactionResponse {
     lambda_weight: number;
   };
   args: Args;
-  'consatisfaction.version_info': string;
+  consatisfaction_version_info: string;
   meta: Meta;
 }
 
@@ -43,7 +43,7 @@ export class ConsatisfactionService {
   constructor(private http: HttpClient) {}
 
   configUrl =
-    'https://iaq4msn8kk.execute-api.eu-central-1.amazonaws.com/Prod/hello/';
+    'https://4cvelnmm67.execute-api.eu-central-1.amazonaws.com/Prod/hello/';
 
   getSolutionFor(args: Args, boats: Boat[], attendees: Attendee[]) {
     let payload: ConsatisfactionRequest = {

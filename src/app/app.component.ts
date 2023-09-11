@@ -110,6 +110,7 @@ export class AppComponent implements OnInit {
   consatisfactionResponse?: ConsatisfactionResponse;
   consatisfactionResponseArgs?: string;
   consatisfactionResponseMeta?: string;
+  consatisfactionResponseResultBoats?: string;
 
   assignAttendeesToBoats() {
     this.consatisfactionService
@@ -122,6 +123,9 @@ export class AppComponent implements OnInit {
         );
         this.consatisfactionResponseMeta = JSON.stringify(
           this.consatisfactionResponse.meta
+        );
+        this.consatisfactionResponseResultBoats = JSON.stringify(
+          this.consatisfactionResponse.result.boats
         );
       });
   }

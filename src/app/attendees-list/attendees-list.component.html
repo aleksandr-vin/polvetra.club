@@ -5,7 +5,7 @@
 <button type="button" (click)="add.emit()">Add Random</button>
 
 <div *ngFor="let attendee of attendees">
-  <h3>{{ attendee.name }} age: {{ attendee.age }} tags: {{ attendee.age }}</h3>
+  <h3>{{ attendee.name }} age: {{ attendee.age }} tags: {{ attendee.tags }}</h3>
   <p>
     {{ (attendee.gender == "F" && "🧜‍♀️") || "" }}
     {{ (attendee.gender == "M" && "👨‍🏭") || "" }}
