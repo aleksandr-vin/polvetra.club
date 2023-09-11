@@ -9,7 +9,6 @@ body {
 
 body {
   margin: 0;
-  //font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 // Define a dark theme
@@ -58,7 +57,8 @@ $light-theme: mat.define-light-theme(
   // Typography config based on the default, but using "Comic Sans" as the
   // default font family for all levels.
   $kids-typography: mat.define-typography-config(
-    $font-family: "Comic Sans",
+    $font-family:
+      "'Comic Sans', 'Comic Sans MS', Chalkboard, ChalkboardSE-Regular, sans-serif",
   );
 
   $kids-theme: mat.define-light-theme(
