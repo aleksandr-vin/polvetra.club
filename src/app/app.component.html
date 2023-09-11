@@ -1,115 +1,130 @@
-<mat-toolbar>
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with menu icon"
-  >
-    <mat-icon>menu</mat-icon>
+<div [ngClass]="{ 'kids-theme': isKidsTheme }">
+  <mat-toolbar>
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+    >
+      <!-- <mat-icon>sailing</mat-icon> -->
+      <mat-icon>waves</mat-icon>
+    </button>
+    <span>{{ title }}</span>
+    <span class="example-spacer"></span>
+    <div>
+      <button mat-icon-button (click)="toggleKidsTheme()">
+        <mat-icon *ngIf="isKidsTheme">pets</mat-icon>
+        <mat-icon *ngIf="!isKidsTheme">favorite</mat-icon>
+      </button>
+    </div>
+    <!-- <button
+      mat-icon-button
+      class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon"
+    >
+      <mat-icon>favorite</mat-icon>
+    </button> -->
+    <!-- <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with share icon"
+    >
+      <mat-icon>share</mat-icon>
+    </button> -->
+  </mat-toolbar>
+
+  <h2>Parameters</h2>
+
+  <mat-slide-toggle>Toggle me!</mat-slide-toggle>
+
+  <ul>
+    <div *ngFor="let item of solverArgs | keyvalue">
+      <li>{{ item.key }}: {{ item.value }}</li>
+    </div>
+  </ul>
+
+  <button mat-flat-button color="accent" (click)="assignAttendeesToBoats()">
+    <mat-icon>assignment</mat-icon> Assign attendees to boats
   </button>
-  <span>{{ title }}</span>
-  <span class="example-spacer"></span>
-  <button
-    mat-icon-button
-    class="example-icon favorite-icon"
-    aria-label="Example icon-button with heart icon"
-  >
-    <mat-icon>favorite</mat-icon>
-  </button>
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with share icon"
-  >
-    <mat-icon>share</mat-icon>
-  </button>
-</mat-toolbar>
 
-<h2>Parameters</h2>
+  <mat-spinner *ngIf="consatisfactionComputing"></mat-spinner>
 
-<mat-slide-toggle>Toggle me!</mat-slide-toggle>
-
-<ul>
-  <div *ngFor="let item of solverArgs | keyvalue">
-    <li>{{ item.key }}: {{ item.value }}</li>
-  </div>
-</ul>
-
-<button mat-flat-button (click)="assignAttendeesToBoats()">
-  Assign attendees to boats
-</button>
-
-<mat-spinner *ngIf="consatisfactionComputing"></mat-spinner>
-
-<div *ngIf="consatisfactionResponse">
-  <pre>
+  <div *ngIf="consatisfactionResponse">
+    <pre>
     solution: {{ consatisfactionResponse.result.solution.toString() }}
     captain_groups: {{
-      consatisfactionResponse.result.captain_groups.toString()
-    }}
+        consatisfactionResponse.result.captain_groups.toString()
+      }}
     kids_groups: {{ consatisfactionResponse.result.kids_groups.toString() }}
     no_kids_groups: {{
-      consatisfactionResponse.result.no_kids_groups.toString()
-    }}
+        consatisfactionResponse.result.no_kids_groups.toString()
+      }}
     odd_gender_groups: {{
-      consatisfactionResponse.result.odd_gender_groups.toString()
-    }}
+        consatisfactionResponse.result.odd_gender_groups.toString()
+      }}
     
     capacities: {{ consatisfactionResponse.result.capacities.toString() }}
     boats: {{ consatisfactionResponseResultBoats }}
     
     objective_value: {{ consatisfactionResponse.result.objective_value }}
     gender_disparity_weight: {{
-      consatisfactionResponse.result.gender_disparity_weight
-    }}
+        consatisfactionResponse.result.gender_disparity_weight
+      }}
     lambda_weight: {{ consatisfactionResponse.result.lambda_weight }}
 
     args: {{ consatisfactionResponseArgs }}
     meta: {{ consatisfactionResponseMeta }}
     consatisfaction_gversion_info: {{
-      consatisfactionResponse.consatisfaction_version_info
-    }}
-  </pre>
-  <h3>Assignments</h3>
-  <ol>
-    <div
-      *ngFor="let group of consatisfactionResponse.result.groups; let i = index"
+        consatisfactionResponse.consatisfaction_version_info
+      }}
+  </pre
     >
+    <h3>Assignments</h3>
+    <ol>
+      <div
+        *ngFor="
+          let group of consatisfactionResponse.result.groups;
+          let i = index
+        "
+      >
+        <li>
+          Boat
+          {{
+            consatisfactionResponse.result.solution &&
+            consatisfactionResponse.result.solution.length > 0
+              ? consatisfactionResponse.result.solution[i]
+              : "-"
+          }}:
+          <span *ngFor="let attendee of group; let isLast = last"
+            >{{ attendee.name }}{{ isLast ? "" : ", " }}
+          </span>
+        </li>
+      </div>
+    </ol>
+  </div>
+
+  <hr />
+
+  <h2>Boats</h2>
+  <button mat-flat-button color="primary" (click)="onAddBoat()">
+    <mat-icon>sailing</mat-icon>Add Random
+  </button>
+
+  <ul>
+    <div *ngFor="let boat of boats; let i = index">
       <li>
-        Boat
-        {{
-          consatisfactionResponse.result.solution &&
-          consatisfactionResponse.result.solution.length > 0
-            ? consatisfactionResponse.result.solution[i]
-            : "-"
-        }}:
-        <span *ngFor="let attendee of group; let isLast = last"
-          >{{ attendee.name }}{{ isLast ? "" : ", " }}
-        </span>
+        Boat {{ i }} cabins berths:
+        <span *ngFor="let cabin of boat.cabins; let isLast = last"
+          >{{ cabin.berths }}{{ isLast ? "" : ", " }} </span
+        ><button type="button" (click)="onDeleteBoat(boat)">Delete</button>
       </li>
     </div>
-  </ol>
+  </ul>
+
+  <hr />
+
+  <app-attendees-list
+    [attendees]="attendees"
+    (delete)="onDelete($event)"
+    (add)="onAdd()"
+  ></app-attendees-list>
 </div>
-
-<hr />
-
-<h2>Boats</h2>
-<button type="button" (click)="onAddBoat()">Add Random</button>
-
-<ul>
-  <div *ngFor="let boat of boats; let i = index">
-    <li>
-      Boat {{ i }} cabins berths:
-      <span *ngFor="let cabin of boat.cabins; let isLast = last"
-        >{{ cabin.berths }}{{ isLast ? "" : ", " }} </span
-      ><button type="button" (click)="onDeleteBoat(boat)">Delete</button>
-    </li>
-  </div>
-</ul>
-
-<hr />
-
-<app-attendees-list
-  [attendees]="attendees"
-  (delete)="onDelete($event)"
-  (add)="onAdd()"
-></app-attendees-list>

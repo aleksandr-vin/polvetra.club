@@ -2,7 +2,9 @@
 
 <p>{{ attendees?.length }}</p>
 
-<button type="button" (click)="add.emit()">Add Random</button>
+<button mat-flat-button color="primary" (click)="add.emit()">
+  <mat-icon>person_add</mat-icon>Add Random
+</button>
 
 <div *ngFor="let attendee of attendees">
   <h3>{{ attendee.name }} age: {{ attendee.age }} tags: {{ attendee.tags }}</h3>

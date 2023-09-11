@@ -27,8 +27,17 @@ function randomChoice<A>(items: A[]): A {
 export class AppComponent implements OnInit {
   constructor(private consatisfactionService: ConsatisfactionService) {}
 
+  isKidsTheme = false;
+
+  toggleKidsTheme() {
+    this.isKidsTheme = !this.isKidsTheme;
+    localStorage.setItem('theme', this.isKidsTheme ? 'kids' : '');
+  }
+
   // implement OnInit's `ngOnInit` method
   ngOnInit() {
+    this.isKidsTheme = localStorage.getItem('theme') === 'kids' ? true : false;
+
     this.addRandomAttendee();
     this.addRandomAttendee();
     this.addRandomAttendee();
