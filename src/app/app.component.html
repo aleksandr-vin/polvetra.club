@@ -105,10 +105,21 @@
 
   <hr />
 
-  <h2>Boats</h2>
-  <button mat-flat-button color="primary" (click)="onAddBoat()">
-    <mat-icon>sailing</mat-icon>Add Random
-  </button>
+  <h2>
+    Boats
+    <span class="demo-section">
+      <button
+        mat-raised-button
+        color="primary"
+        matBadge="{{ boats.length }}"
+        matBadgePosition="before"
+        matBadgeColor="accent"
+        (click)="onAddBoat()"
+      >
+        Add
+      </button>
+    </span>
+  </h2>
 
   <ul>
     <div *ngFor="let boat of boats; let i = index">
@@ -116,7 +127,9 @@
         Boat {{ i }} cabins berths:
         <span *ngFor="let cabin of boat.cabins; let isLast = last"
           >{{ cabin.berths }}{{ isLast ? "" : ", " }} </span
-        ><button type="button" (click)="onDeleteBoat(boat)">Delete</button>
+        ><button mat-icon-button color="warn" (click)="onDeleteBoat(boat)">
+          <mat-icon>delete</mat-icon>
+        </button>
       </li>
     </div>
   </ul>

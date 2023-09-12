@@ -8,7 +8,11 @@ import {
 } from './consatisfaction.service';
 
 function getRandomName(): string {
-  return 'jay-' + Math.floor(Math.random() * 1000).toString();
+  return 'Minnie-' + Math.floor(Math.random() * 1000).toString();
+}
+
+function getRandomSurname(): string {
+  return 'Moocher-' + Math.floor(Math.random() * 1000).toString();
 }
 
 function getRandomNumber(min: number, max: number): number {
@@ -95,8 +99,9 @@ export class AppComponent implements OnInit {
   }
 
   addRandomAttendee() {
-    this.attendees.push({
+    this.attendees.unshift({
       name: getRandomName(),
+      surname: getRandomSurname(),
       age: getRandomNumber(1, 99),
       gender: randomChoice(['F', 'M']),
       sail_exp: randomChoice([
