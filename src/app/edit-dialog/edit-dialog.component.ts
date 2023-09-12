@@ -8,6 +8,7 @@ import {
 } from '@angular/material/dialog';
 import { Attendee } from '../attendee';
 import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 export interface DialogData {
   attendee: Attendee;
@@ -19,7 +20,7 @@ export interface DialogData {
   templateUrl: './edit-dialog.component.html',
   styleUrls: ['./edit-dialog.component.scss'],
   standalone: true,
-  imports: [MatDialogModule, MatButtonModule, MatInputModule],
+  imports: [MatDialogModule, MatButtonModule, MatInputModule, FormsModule],
 })
 export class EditDialogComponent {
   constructor(
@@ -32,14 +33,14 @@ export class EditDialogComponent {
 
   attendee: Attendee;
   field: string;
-  v: string | number;
+  vaule: string | number;
 
   ngOnInit(): void {
-    this.v = this.attendee[this.field as keyof Attendee];
+    this.vaule = 'xxx' + this.attendee[this.field as keyof Attendee];
   }
 
   onNoClick(): void {
-    console.log(';:::::::', this.v);
+    console.log(';:::::::', this.vaule);
     this.dialogRef.close();
   }
 }

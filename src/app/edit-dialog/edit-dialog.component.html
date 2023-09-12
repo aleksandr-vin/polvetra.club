@@ -2,12 +2,17 @@
 <div mat-dialog-content>
   <mat-form-field class="example-full-width">
     <!-- <mat-label>{{ field }}:</mat-label> -->
-    <input matInput placeholder="{{ field }}" [value]="v" />
+    <input matInput [(ngModel)]="vaule" />
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close (click)="onNoClick()">Cancel</button>
-  <button mat-button mat-dialog-close cdkFocusInitial [mat-dialog-close]="v">
+  <button
+    mat-button
+    mat-dialog-close
+    cdkFocusInitial
+    [mat-dialog-close]="vaule"
+  >
     Save
   </button>
 </div>
