@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>{{ field }}</h1>
+<div mat-dialog-content>
+  <mat-form-field class="example-full-width">
+    <!-- <mat-label>{{ field }}:</mat-label> -->
+    <input matInput placeholder="{{ field }}" [value]="v" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="onNoClick()">Cancel</button>
+  <button mat-button mat-dialog-close cdkFocusInitial [mat-dialog-close]="v">
+    Save
+  </button>
+</div>
