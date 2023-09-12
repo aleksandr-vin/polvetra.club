@@ -14,6 +14,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [AppComponent, AttendeesListComponent],
@@ -31,6 +33,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatBadgeModule,
     MatSortModule,
     MatDialogModule,
+    FormsModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

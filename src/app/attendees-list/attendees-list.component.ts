@@ -25,6 +25,20 @@ export class AttendeesListComponent {
 
   constructor(public dialog: MatDialog) {}
 
+  private currentEditFocus?: [Attendee, keyof Attendee];
+
+  toggleEdit(attendee: Attendee, field: keyof Attendee) {
+    this.currentEditFocus = [attendee, field];
+  }
+
+  isEditing(attendee: Attendee, field: keyof Attendee) {
+    return (
+      this.currentEditFocus &&
+      this.currentEditFocus[0] == attendee &&
+      this.currentEditFocus[1] == field
+    );
+  }
+
   onEdit(attendee: Attendee, field: string) {
     const dialogRef = this.dialog.open(EditDialogComponent, {
       width: '250px',
