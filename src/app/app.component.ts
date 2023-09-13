@@ -130,6 +130,7 @@ export class AppComponent implements OnInit {
 
   assignAttendeesToBoats() {
     this.consatisfactionComputing = true;
+    this.consatisfactionResponse = undefined;
     let call = this.consatisfactionService.getSolutionFor(
       this.solverArgs,
       this.boats,

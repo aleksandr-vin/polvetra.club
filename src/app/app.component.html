@@ -81,6 +81,7 @@
           <button
             mat-raised-button
             color="accent"
+            [disabled]="consatisfactionComputing"
             (click)="assignAttendeesToBoats()"
           >
             <mat-icon>assignment</mat-icon> Assign attendees to boats
@@ -108,7 +109,7 @@
                 consatisfactionResponse.result.solution &&
                 consatisfactionResponse.result.solution.length > 0
                   ? consatisfactionResponse.result.solution[i]
-                  : "-"
+                  : "X"
               }}:
               <span *ngFor="let attendee of group; let isLast = last"
                 >{{ attendee.name }}{{ isLast ? "" : ", " }}
