@@ -2,9 +2,9 @@
   <mat-toolbar>
     <button
       mat-icon-button
-      disabled="true"
       class="example-icon"
       aria-label="Example icon-button with menu icon"
+      (click)="drawer.toggle()"
     >
       <!-- <mat-icon>sailing</mat-icon> -->
       <mat-icon>waves</mat-icon>
@@ -33,112 +33,117 @@
     </button> -->
   </mat-toolbar>
 
-  <h2>Parameters</h2>
+  <mat-drawer-container class="example-container" [hasBackdrop]="true">
+    <mat-drawer #drawer [mode]="'over'">
+      <mat-list role="list">
+        <mat-list-item
+          role="listitem"
+          *ngFor="let item of solverArgs | keyvalue"
+        >
+          {{ item.key }}: {{ item.value }}
+        </mat-list-item>
+      </mat-list>
+    </mat-drawer>
 
-  <mat-slide-toggle>Toggle me!</mat-slide-toggle>
+    <mat-drawer-content>
+      <button mat-flat-button color="accent" (click)="assignAttendeesToBoats()">
+        <mat-icon>assignment</mat-icon> Assign attendees to boats
+      </button>
 
-  <ul>
-    <div *ngFor="let item of solverArgs | keyvalue">
-      <li>{{ item.key }}: {{ item.value }}</li>
-    </div>
-  </ul>
+      <mat-spinner *ngIf="consatisfactionComputing"></mat-spinner>
 
-  <button mat-flat-button color="accent" (click)="assignAttendeesToBoats()">
-    <mat-icon>assignment</mat-icon> Assign attendees to boats
-  </button>
-
-  <mat-spinner *ngIf="consatisfactionComputing"></mat-spinner>
-
-  <div *ngIf="consatisfactionResponse">
-    <pre>
+      <div *ngIf="consatisfactionResponse">
+        <pre>
     solution: {{ consatisfactionResponse.result.solution.toString() }}
     captain_groups: {{
-        consatisfactionResponse.result.captain_groups.toString()
-      }}
+            consatisfactionResponse.result.captain_groups.toString()
+          }}
     kids_groups: {{ consatisfactionResponse.result.kids_groups.toString() }}
     no_kids_groups: {{
-        consatisfactionResponse.result.no_kids_groups.toString()
-      }}
+            consatisfactionResponse.result.no_kids_groups.toString()
+          }}
     odd_gender_groups: {{
-        consatisfactionResponse.result.odd_gender_groups.toString()
-      }}
+            consatisfactionResponse.result.odd_gender_groups.toString()
+          }}
     
     capacities: {{ consatisfactionResponse.result.capacities.toString() }}
     boats: {{ consatisfactionResponseResultBoats }}
     
     objective_value: {{ consatisfactionResponse.result.objective_value }}
     gender_disparity_weight: {{
-        consatisfactionResponse.result.gender_disparity_weight
-      }}
+            consatisfactionResponse.result.gender_disparity_weight
+          }}
     lambda_weight: {{ consatisfactionResponse.result.lambda_weight }}
 
     args: {{ consatisfactionResponseArgs }}
     meta: {{ consatisfactionResponseMeta }}
     consatisfaction_gversion_info: {{
-        consatisfactionResponse.consatisfaction_version_info
-      }}
+            consatisfactionResponse.consatisfaction_version_info
+          }}
   </pre
-    >
-    <h3>Assignments</h3>
-    <ol>
-      <div
-        *ngFor="
-          let group of consatisfactionResponse.result.groups;
-          let i = index
-        "
-      >
-        <li>
-          Boat
-          {{
-            consatisfactionResponse.result.solution &&
-            consatisfactionResponse.result.solution.length > 0
-              ? consatisfactionResponse.result.solution[i]
-              : "-"
-          }}:
-          <span *ngFor="let attendee of group; let isLast = last"
-            >{{ attendee.name }}{{ isLast ? "" : ", " }}
-          </span>
-        </li>
+        >
+        <h3>Assignments</h3>
+        <ol>
+          <div
+            *ngFor="
+              let group of consatisfactionResponse.result.groups;
+              let i = index
+            "
+          >
+            <li>
+              Boat
+              {{
+                consatisfactionResponse.result.solution &&
+                consatisfactionResponse.result.solution.length > 0
+                  ? consatisfactionResponse.result.solution[i]
+                  : "-"
+              }}:
+              <span *ngFor="let attendee of group; let isLast = last"
+                >{{ attendee.name }}{{ isLast ? "" : ", " }}
+              </span>
+            </li>
+          </div>
+        </ol>
       </div>
-    </ol>
-  </div>
 
-  <hr />
+      <mat-divider></mat-divider>
 
-  <h2>
-    Boats
-    <span class="demo-section">
-      <button
-        mat-raised-button
-        color="primary"
-        matBadge="{{ boats.length }}"
-        matBadgePosition="before"
-        matBadgeColor="accent"
-        (click)="onAddBoat()"
-      >
-        Add
-      </button>
-    </span>
-  </h2>
+      <h2>
+        Boats
+        <span class="demo-section">
+          <button
+            mat-raised-button
+            color="primary"
+            matBadge="{{ boats.length }}"
+            matBadgePosition="before"
+            matBadgeColor="accent"
+            (click)="onAddBoat()"
+          >
+            Add
+          </button>
+        </span>
+      </h2>
 
-  <ul>
-    <div *ngFor="let boat of boats; let i = index">
-      <li>
-        Boat {{ i }} cabins berths:
-        <span *ngFor="let cabin of boat.cabins; let isLast = last"
-          >{{ cabin.berths }}{{ isLast ? "" : ", " }} </span
-        ><button mat-icon-button color="warn" (click)="onDeleteBoat(boat)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </li>
-    </div>
-  </ul>
+      <ul>
+        <div *ngFor="let boat of boats; let i = index">
+          <li>
+            Boat {{ i }} cabins berths:
+            <span *ngFor="let cabin of boat.cabins; let isLast = last"
+              >{{ cabin.berths }}{{ isLast ? "" : ", " }} </span
+            ><button mat-icon-button color="warn" (click)="onDeleteBoat(boat)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </li>
+        </div>
+      </ul>
 
-  <hr />
+      <mat-divider></mat-divider>
 
-  <app-attendees-list
-    [attendees]="attendees"
-    (delete)="onDelete($event)"
-    (add)="onAdd()"
-  ></app-attendees-list>
+      <app-attendees-list
+        [attendees]="attendees"
+        (delete)="onDelete($event)"
+        (add)="onAdd()"
+      ></app-attendees-list>
+    </mat-drawer-content>
+  </mat-drawer-container>
 </div>

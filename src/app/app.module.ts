@@ -16,6 +16,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [AppComponent, AttendeesListComponent],
@@ -35,6 +38,9 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogModule,
     FormsModule,
     MatInputModule,
+    MatDividerModule,
+    MatListModule,
+    MatSidenavModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
