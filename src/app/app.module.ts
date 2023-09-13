@@ -5,9 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AttendeesListComponent } from './attendees-list/attendees-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -19,6 +17,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [AppComponent, AttendeesListComponent],
@@ -27,9 +27,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     // import HttpClientModule after BrowserModule.
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSlideToggleModule,
     MatButtonModule,
-    MatProgressSpinnerModule,
     MatToolbarModule,
     MatIconModule,
     MatTableModule,
@@ -41,6 +39,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatDividerModule,
     MatListModule,
     MatSidenavModule,
+    MatTabsModule,
+    MatProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

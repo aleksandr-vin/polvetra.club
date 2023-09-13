@@ -127,6 +127,7 @@ export class AppComponent implements OnInit {
   consatisfactionResponseArgs?: string;
   consatisfactionResponseMeta?: string;
   consatisfactionResponseResultBoats?: string;
+  consatisfactionResponseStats?: boolean;
 
   assignAttendeesToBoats() {
     this.consatisfactionComputing = true;
@@ -147,6 +148,10 @@ export class AppComponent implements OnInit {
       this.consatisfactionResponseResultBoats = JSON.stringify(
         this.consatisfactionResponse.result.boats
       );
+
+      if (this.consatisfactionResponseStats == undefined) {
+        this.consatisfactionResponseStats = true;
+      }
     });
     call.subscribe((data: ConsatisfactionResponse) => {
       this.consatisfactionComputing = false;

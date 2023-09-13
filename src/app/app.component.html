@@ -2,9 +2,9 @@
   <mat-toolbar>
     <button
       mat-icon-button
+      disabled="true"
       class="example-icon"
       aria-label="Example icon-button with menu icon"
-      (click)="drawer.toggle()"
     >
       <!-- <mat-icon>sailing</mat-icon> -->
       <mat-icon>waves</mat-icon>
@@ -33,8 +33,130 @@
     </button> -->
   </mat-toolbar>
 
-  <mat-drawer-container class="example-container" [hasBackdrop]="true">
-    <mat-drawer #drawer [mode]="'over'">
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+    <mat-tab label="Main">
+      <section>
+        <h2 class="mat-h2">
+          Boats
+          <span class="demo-section">
+            <button
+              mat-raised-button
+              color="primary"
+              matBadge="{{ boats.length }}"
+              matBadgePosition="before"
+              matBadgeColor="accent"
+              (click)="onAddBoat()"
+            >
+              Add
+            </button>
+          </span>
+        </h2>
+
+        <ul>
+          <mat-list role="list">
+            <mat-list-item
+              role="listitem"
+              *ngFor="let boat of boats; let i = index"
+            >
+              Boat {{ i }} cabins berths:
+              <span *ngFor="let cabin of boat.cabins; let isLast = last"
+                >{{ cabin.berths }}{{ isLast ? "" : ", " }} </span
+              ><button
+                mat-icon-button
+                color="warn"
+                (click)="onDeleteBoat(boat)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-list-item>
+          </mat-list>
+        </ul>
+      </section>
+
+      <section>
+        <app-attendees-list
+          [attendees]="attendees"
+          (delete)="onDelete($event)"
+          (add)="onAdd()"
+        ></app-attendees-list>
+      </section>
+
+      <section>
+        <h2 class="mat-h2">Assignments</h2>
+        <p>
+          <button
+            mat-raised-button
+            color="accent"
+            (click)="assignAttendeesToBoats()"
+          >
+            <mat-icon>assignment</mat-icon> Assign attendees to boats
+          </button>
+        </p>
+
+        <mat-progress-bar
+          *ngIf="consatisfactionComputing"
+          [mode]="'indeterminate'"
+          [value]="'query'"
+        >
+        </mat-progress-bar>
+
+        <div *ngIf="consatisfactionResponse">
+          <pre *ngIf="consatisfactionResponseStats">
+    solution: {{ consatisfactionResponse.result.solution.toString() }}
+    captain_groups: {{
+              consatisfactionResponse.result.captain_groups.toString()
+            }}
+    kids_groups: {{ consatisfactionResponse.result.kids_groups.toString() }}
+    no_kids_groups: {{
+              consatisfactionResponse.result.no_kids_groups.toString()
+            }}
+    odd_gender_groups: {{
+              consatisfactionResponse.result.odd_gender_groups.toString()
+            }}
+    
+    capacities: {{ consatisfactionResponse.result.capacities.toString() }}
+    boats: {{ consatisfactionResponseResultBoats }}
+    
+    objective_value: {{ consatisfactionResponse.result.objective_value }}
+    gender_disparity_weight: {{
+              consatisfactionResponse.result.gender_disparity_weight
+            }}
+    lambda_weight: {{ consatisfactionResponse.result.lambda_weight }}
+
+    args: {{ consatisfactionResponseArgs }}
+    meta: {{ consatisfactionResponseMeta }}
+    consatisfaction_gversion_info: {{
+              consatisfactionResponse.consatisfaction_version_info
+            }}
+  </pre
+          >
+
+          <ol>
+            <div
+              *ngFor="
+                let group of consatisfactionResponse.result.groups;
+                let i = index
+              "
+            >
+              <li>
+                Boat
+                {{
+                  consatisfactionResponse.result.solution &&
+                  consatisfactionResponse.result.solution.length > 0
+                    ? consatisfactionResponse.result.solution[i]
+                    : "-"
+                }}:
+                <span *ngFor="let attendee of group; let isLast = last"
+                  >{{ attendee.name }}{{ isLast ? "" : ", " }}
+                </span>
+              </li>
+            </div>
+          </ol>
+        </div>
+      </section>
+    </mat-tab>
+
+    <mat-tab label="Settings">
       <mat-list role="list">
         <mat-list-item
           role="listitem"
@@ -43,107 +165,6 @@
           {{ item.key }}: {{ item.value }}
         </mat-list-item>
       </mat-list>
-    </mat-drawer>
-
-    <mat-drawer-content>
-      <button mat-flat-button color="accent" (click)="assignAttendeesToBoats()">
-        <mat-icon>assignment</mat-icon> Assign attendees to boats
-      </button>
-
-      <mat-spinner *ngIf="consatisfactionComputing"></mat-spinner>
-
-      <div *ngIf="consatisfactionResponse">
-        <pre>
-    solution: {{ consatisfactionResponse.result.solution.toString() }}
-    captain_groups: {{
-            consatisfactionResponse.result.captain_groups.toString()
-          }}
-    kids_groups: {{ consatisfactionResponse.result.kids_groups.toString() }}
-    no_kids_groups: {{
-            consatisfactionResponse.result.no_kids_groups.toString()
-          }}
-    odd_gender_groups: {{
-            consatisfactionResponse.result.odd_gender_groups.toString()
-          }}
-    
-    capacities: {{ consatisfactionResponse.result.capacities.toString() }}
-    boats: {{ consatisfactionResponseResultBoats }}
-    
-    objective_value: {{ consatisfactionResponse.result.objective_value }}
-    gender_disparity_weight: {{
-            consatisfactionResponse.result.gender_disparity_weight
-          }}
-    lambda_weight: {{ consatisfactionResponse.result.lambda_weight }}
-
-    args: {{ consatisfactionResponseArgs }}
-    meta: {{ consatisfactionResponseMeta }}
-    consatisfaction_gversion_info: {{
-            consatisfactionResponse.consatisfaction_version_info
-          }}
-  </pre
-        >
-        <h3>Assignments</h3>
-        <ol>
-          <div
-            *ngFor="
-              let group of consatisfactionResponse.result.groups;
-              let i = index
-            "
-          >
-            <li>
-              Boat
-              {{
-                consatisfactionResponse.result.solution &&
-                consatisfactionResponse.result.solution.length > 0
-                  ? consatisfactionResponse.result.solution[i]
-                  : "-"
-              }}:
-              <span *ngFor="let attendee of group; let isLast = last"
-                >{{ attendee.name }}{{ isLast ? "" : ", " }}
-              </span>
-            </li>
-          </div>
-        </ol>
-      </div>
-
-      <mat-divider></mat-divider>
-
-      <h2>
-        Boats
-        <span class="demo-section">
-          <button
-            mat-raised-button
-            color="primary"
-            matBadge="{{ boats.length }}"
-            matBadgePosition="before"
-            matBadgeColor="accent"
-            (click)="onAddBoat()"
-          >
-            Add
-          </button>
-        </span>
-      </h2>
-
-      <ul>
-        <div *ngFor="let boat of boats; let i = index">
-          <li>
-            Boat {{ i }} cabins berths:
-            <span *ngFor="let cabin of boat.cabins; let isLast = last"
-              >{{ cabin.berths }}{{ isLast ? "" : ", " }} </span
-            ><button mat-icon-button color="warn" (click)="onDeleteBoat(boat)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </li>
-        </div>
-      </ul>
-
-      <mat-divider></mat-divider>
-
-      <app-attendees-list
-        [attendees]="attendees"
-        (delete)="onDelete($event)"
-        (add)="onAdd()"
-      ></app-attendees-list>
-    </mat-drawer-content>
-  </mat-drawer-container>
+    </mat-tab>
+  </mat-tab-group>
 </div>

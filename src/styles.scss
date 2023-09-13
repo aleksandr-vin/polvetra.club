@@ -11,6 +11,10 @@ body {
   margin: 0;
 }
 
+$my-typography: mat.define-typography-config(
+  $font-family: "Roboto",
+);
+
 // Define a dark theme
 $dark-theme: mat.define-dark-theme(
   (
@@ -20,10 +24,7 @@ $dark-theme: mat.define-dark-theme(
       warn: mat.define-palette(mat.$deep-orange-palette),
     ),
     // Only include `typography` and `density` in the default dark theme.
-    typography:
-      mat.define-typography-config(
-        $font-family: "Roboto",
-      ),
+    typography: $my-typography,
     density: 0,
   )
 );
@@ -43,6 +44,8 @@ $light-theme: mat.define-light-theme(
 // @include mat.core-theme($light-theme);
 // @include mat.button-theme($light-theme);
 @include mat.all-component-themes($light-theme);
+
+@include mat.typography-hierarchy($my-typography);
 
 // Apply the dark theme only when the user prefers dark themes.
 @media (prefers-color-scheme: dark) {
@@ -79,4 +82,6 @@ $light-theme: mat.define-light-theme(
   @include mat.all-component-themes($kids-theme);
   // @include mat.core-color($kids-theme);
   // @include mat.button-color($kids-theme);
+
+  @include mat.typography-hierarchy($kids-typography);
 }
