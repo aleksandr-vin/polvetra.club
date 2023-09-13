@@ -52,19 +52,19 @@
           </span>
         </h2>
 
-        <mat-list role="list">
-          <mat-list-item
-            role="listitem"
-            *ngFor="let boat of boats; let i = index"
-          >
-            Boat {{ i }} cabins berths:
-            <span *ngFor="let cabin of boat.cabins; let isLast = last"
-              >{{ cabin.berths }}{{ isLast ? "" : ", " }} </span
-            ><button mat-icon-button color="warn" (click)="onDeleteBoat(boat)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </mat-list-item>
-        </mat-list>
+        <h3 class="mat-h3" *ngFor="let boat of boats; let i = index">
+          Boat {{ i }} cabins berths:
+          <mat-button-toggle-group name="berths">
+            <div *ngFor="let cabin of boat.cabins; let isLast = last">
+              <mat-button-toggle (click)="changeBerths(cabin)">{{
+                cabin.berths
+              }}</mat-button-toggle>
+            </div>
+          </mat-button-toggle-group>
+          <button mat-icon-button color="warn" (click)="onDeleteBoat(boat)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </h3>
       </section>
 
       <section>

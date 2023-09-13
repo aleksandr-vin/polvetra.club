@@ -65,6 +65,14 @@ export class AppComponent implements OnInit {
 
   consatisfactionComputing: boolean = false;
 
+  changeBerths(cabin: Cabin) {
+    if (cabin.berths == 2) {
+      cabin.berths = 1;
+    } else {
+      cabin.berths = 2;
+    }
+  }
+
   onDelete(attendee: Attendee) {
     this.attendees.forEach((value, index) => {
       if (value == attendee) this.attendees.splice(index, 1);
