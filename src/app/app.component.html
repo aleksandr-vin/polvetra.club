@@ -95,18 +95,36 @@
         </mat-progress-bar>
 
         <div *ngIf="consatisfactionResponse">
-          <mat-accordion>
-            <mat-expansion-panel
-              (opened)="consatisfactionResponseStatsOpenState = true"
-              (closed)="consatisfactionResponseStatsOpenState = false"
+          <mat-list role="list">
+            <mat-list-item
+              role="listitem"
+              *ngFor="
+                let group of consatisfactionResponse.result.groups;
+                let i = index
+              "
             >
+              Boat
+              {{
+                consatisfactionResponse.result.solution &&
+                consatisfactionResponse.result.solution.length > 0
+                  ? consatisfactionResponse.result.solution[i]
+                  : "-"
+              }}:
+              <span *ngFor="let attendee of group; let isLast = last"
+                >{{ attendee.name }}{{ isLast ? "" : ", " }}
+              </span>
+            </mat-list-item>
+          </mat-list>
+
+          <mat-accordion>
+            <mat-expansion-panel>
               <mat-expansion-panel-header>
                 <mat-panel-title>Details</mat-panel-title>
                 <mat-panel-description>
                   Some details about how computation was done
                 </mat-panel-description>
               </mat-expansion-panel-header>
-              <pre *ngIf="consatisfactionResponseStatsOpenState">
+              <pre>
 solution: {{ consatisfactionResponse.result.solution.toString() }}
 captain_groups: {{ consatisfactionResponse.result.captain_groups.toString() }}
 kids_groups: {{ consatisfactionResponse.result.kids_groups.toString() }}
@@ -133,27 +151,6 @@ consatisfaction_gversion_info: {{
               >
             </mat-expansion-panel>
           </mat-accordion>
-
-          <mat-list role="list">
-            <mat-list-item
-              role="listitem"
-              *ngFor="
-                let group of consatisfactionResponse.result.groups;
-                let i = index
-              "
-            >
-              Boat
-              {{
-                consatisfactionResponse.result.solution &&
-                consatisfactionResponse.result.solution.length > 0
-                  ? consatisfactionResponse.result.solution[i]
-                  : "-"
-              }}:
-              <span *ngFor="let attendee of group; let isLast = last"
-                >{{ attendee.name }}{{ isLast ? "" : ", " }}
-              </span>
-            </mat-list-item>
-          </mat-list>
         </div>
       </section>
     </mat-tab>
