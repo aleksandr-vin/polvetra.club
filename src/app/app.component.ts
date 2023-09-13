@@ -158,9 +158,9 @@ export class AppComponent implements OnInit {
 
   title = 'Лодочник'; // (⍺-тестирование)
   groupsCount: number = 5;
-  attendees: Attendee[];
+  attendees: Attendee[] = [];
   solverArgs: Args;
-  boats: Boat[];
+  boats: Boat[] = [];
 
   consatisfactionComputing: boolean = false;
 
