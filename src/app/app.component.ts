@@ -148,6 +148,8 @@ export class AppComponent implements OnInit {
         solverArgs: this.solverArgs,
         boats: this.boats,
         consatisfactionResponse: this.consatisfactionResponse,
+        consatisfactionResponseDate: this.consatisfactionResponseDate,
+        consatisfactionRequestId: this.consatisfactionRequestId,
       },
     });
 
@@ -242,6 +244,8 @@ export class AppComponent implements OnInit {
   consatisfactionResponseArgs?: string;
   consatisfactionResponseMeta?: string;
   consatisfactionResponseResultBoats?: string;
+  consatisfactionRequestId?: string | null;
+  consatisfactionResponseDate?: string | null;
 
   assignAttendeesToBoats() {
     this.consatisfactionComputing = true;
@@ -251,20 +255,24 @@ export class AppComponent implements OnInit {
       this.boats,
       this.attendees
     );
-    call.subscribe((data: ConsatisfactionResponse) => {
-      console.log(data);
-      this.consatisfactionResponse = data;
-      this.consatisfactionResponseArgs = JSON.stringify(
-        this.consatisfactionResponse.args
-      );
-      this.consatisfactionResponseMeta = JSON.stringify(
-        this.consatisfactionResponse.meta
-      );
-      this.consatisfactionResponseResultBoats = JSON.stringify(
-        this.consatisfactionResponse.result.boats
-      );
-    });
-    call.subscribe((data: ConsatisfactionResponse) => {
+    //call.subscribe((data: ConsatisfactionResponse) => {
+    call.subscribe((response) => {
+      if (response.body) {
+        let data = response.body;
+        this.consatisfactionRequestId =
+          response.headers.get('x-amzn-requestid');
+        this.consatisfactionResponseDate = response.headers.get('Date');
+        this.consatisfactionResponse = data;
+        this.consatisfactionResponseArgs = JSON.stringify(
+          this.consatisfactionResponse.args
+        );
+        this.consatisfactionResponseMeta = JSON.stringify(
+          this.consatisfactionResponse.meta
+        );
+        this.consatisfactionResponseResultBoats = JSON.stringify(
+          this.consatisfactionResponse.result.boats
+        );
+      }
       this.consatisfactionComputing = false;
     });
   }

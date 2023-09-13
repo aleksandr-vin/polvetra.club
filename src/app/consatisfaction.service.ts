@@ -51,6 +51,8 @@ export class ConsatisfactionService {
       boats: boats.map((boat) => boat.cabins.map((cabin) => cabin.berths)),
       attendees: attendees,
     };
-    return this.http.post<ConsatisfactionResponse>(this.configUrl, payload);
+    return this.http.post<ConsatisfactionResponse>(this.configUrl, payload, {
+      observe: 'response',
+    });
   }
 }
