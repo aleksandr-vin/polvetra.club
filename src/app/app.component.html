@@ -49,6 +49,10 @@
             >
               Add
             </button>
+            &nbsp;
+            <button mat-raised-button color="warn" (click)="onDeleteAllBoats()">
+              Remove all
+            </button>
           </span>
         </h2>
 
@@ -71,6 +75,7 @@
         <app-attendees-list
           [attendees]="attendees"
           (delete)="onDelete($event)"
+          (deleteAll)="onDeleteAllAtteendees()"
           (add)="onAdd()"
         ></app-attendees-list>
       </section>
@@ -80,11 +85,15 @@
           Assignments
           <button
             mat-raised-button
-            color="accent"
+            color="primary"
             [disabled]="consatisfactionComputing"
             (click)="assignAttendeesToBoats()"
           >
             <mat-icon>assignment</mat-icon> Assign attendees to boats
+          </button>
+          &nbsp;
+          <button mat-raised-button color="warn" (click)="reportProblem()">
+            <mat-icon>report</mat-icon> Report a problem
           </button>
         </h2>
 
@@ -157,14 +166,69 @@ consatisfaction_gversion_info: {{
     </mat-tab>
 
     <mat-tab label="Settings">
-      <mat-list role="list">
-        <mat-list-item
-          role="listitem"
-          *ngFor="let item of solverArgs | keyvalue"
-        >
-          {{ item.key }}: {{ item.value }}
-        </mat-list-item>
-      </mat-list>
+      <h2 class="mat-h2">Solution parameters</h2>
+      <p>
+        <button mat-raised-button color="warn" (click)="onResetSolverArgs()">
+          Reset to defaults
+        </button>
+      </p>
+      <h3 class="mat-h3">
+        sail_experience_as_captain:
+        <span
+          ><mat-form-field appearance="fill">
+            <input
+              matInput
+              [(ngModel)]="solverArgs.sail_experience_as_captain"
+            />
+          </mat-form-field>
+        </span>
+      </h3>
+      <h3 class="mat-h3">
+        skipper_rating_threshold:
+        <span
+          ><mat-form-field appearance="fill">
+            <input matInput [(ngModel)]="solverArgs.skipper_rating_threshold" />
+          </mat-form-field>
+        </span>
+      </h3>
+      <h3 class="mat-h3">
+        kids_age_threshold:
+        <span
+          ><mat-form-field appearance="fill">
+            <input matInput [(ngModel)]="solverArgs.kids_age_threshold" />
+          </mat-form-field>
+        </span>
+      </h3>
+      <h3 class="mat-h3">
+        no_kids_tag:
+        <span
+          ><mat-form-field appearance="fill">
+            <input matInput [(ngModel)]="solverArgs.no_kids_tag" />
+          </mat-form-field>
+        </span>
+      </h3>
+      <h3 class="mat-h3">
+        lambda_weight:
+        <span
+          ><mat-form-field appearance="fill">
+            <input matInput [(ngModel)]="solverArgs.lambda_weight" />
+          </mat-form-field>
+        </span>
+      </h3>
+      <h3 class="mat-h3">
+        gender_disparity_weight:
+        <span
+          ><mat-form-field appearance="fill">
+            <input matInput [(ngModel)]="solverArgs.gender_disparity_weight" />
+          </mat-form-field>
+        </span>
+      </h3>
+
+      <h2 class="mat-h2">Web parameters</h2>
+      <h3 class="mat-h3">
+        Autosave:
+        <mat-slide-toggle [(ngModel)]="isAutosaveChecked"></mat-slide-toggle>
+      </h3>
     </mat-tab>
   </mat-tab-group>
 </div>

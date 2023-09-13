@@ -9,6 +9,7 @@ import {
 import { Attendee } from '../attendee';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { EncodeURIComponentPipeModule } from '../email-link-encode.pipe';
 
 export interface DialogData {
   attendee: Attendee;
@@ -16,31 +17,44 @@ export interface DialogData {
 }
 
 @Component({
-  selector: 'app-edit-dialog',
-  templateUrl: './edit-dialog.component.html',
-  styleUrls: ['./edit-dialog.component.scss'],
+  selector: 'app-report-dialog',
+  templateUrl: './report-dialog.component.html',
+  styleUrls: ['./report-dialog.component.scss'],
   standalone: true,
-  imports: [MatDialogModule, MatButtonModule, MatInputModule, FormsModule],
+  imports: [
+    MatDialogModule,
+    MatButtonModule,
+    MatInputModule,
+    FormsModule,
+    EncodeURIComponentPipeModule,
+  ],
 })
 export class EditDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<EditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) {
-    this.attendee = data.attendee;
-    this.field = data.field;
-  }
+  ) {}
 
-  attendee: Attendee;
-  field: string;
-  vaule: string | number;
+  message: string;
+  metadata: string;
+  emailLinkPrefix: string = `mailto:aleksandr.vin@gmail.com?subject=Problem with alpha-testing, polvetra.club&body=`;
 
   ngOnInit(): void {
-    this.vaule = 'xxx' + this.attendee[this.field as keyof Attendee];
+    this.message = `Hi, I've found an issue.
+I think that result should be this ...`;
+
+    this.metadata = `
+
+
+Inputs and solution data:
+
+${JSON.stringify(this.data)}
+
+Browser info: ${navigator.userAgent}
+`;
   }
 
   onNoClick(): void {
-    console.log(';:::::::', this.vaule);
     this.dialogRef.close();
   }
 }

@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Report a problem</h1>
+<div mat-dialog-content>
+  <mat-form-field class="example-full-width">
+    <mat-label>Describe it:</mat-label>
+    <textarea matInput [(ngModel)]="message"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="onNoClick()">Cancel</button>
+  <!-- <button
+    mat-button
+    mat-dialog-close
+    cdkFocusInitial
+    [mat-dialog-close]="message"
+  >
+    Open in email client
+  </button> -->
+  <a
+    mat-button
+    mat-dialog-close
+    cdkFocusInitial
+    [mat-dialog-close]="message"
+    href="{{ emailLinkPrefix + message + metadata | emailLinkEncode }}"
+    target="_blank"
+    >Open email</a
+  >
+</div>

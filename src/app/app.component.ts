@@ -6,6 +6,12 @@ import {
   ConsatisfactionResponse,
   ConsatisfactionService,
 } from './consatisfaction.service';
+import {
+  MatDialog,
+  MatDialogRef,
+  MatDialogModule,
+} from '@angular/material/dialog';
+import { EditDialogComponent } from './report-dialog/report-dialog.component';
 
 function getRandomName(): string {
   return 'Minnie-' + Math.floor(Math.random() * 1000).toString();
@@ -29,7 +35,10 @@ function randomChoice<A>(items: A[]): A {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private consatisfactionService: ConsatisfactionService) {}
+  constructor(
+    private consatisfactionService: ConsatisfactionService,
+    public dialog: MatDialog
+  ) {}
 
   isKidsTheme = false;
 
@@ -38,30 +47,120 @@ export class AppComponent implements OnInit {
     localStorage.setItem('theme', this.isKidsTheme ? 'kids' : '');
   }
 
+  saveData() {
+    console.log('Saving everything...');
+    localStorage.setItem('solverArgs', JSON.stringify(this.solverArgs));
+    localStorage.setItem('attendees', JSON.stringify(this.attendees));
+    localStorage.setItem('boats', JSON.stringify(this.boats));
+    localStorage.setItem('autosave', this.isAutosaveChecked ? 'true' : 'false');
+  }
+
+  restoreData() {
+    console.log('Restoring everything...');
+    let solverArgs = localStorage.getItem('solverArgs');
+    if (solverArgs) {
+      this.solverArgs = JSON.parse(solverArgs);
+    }
+
+    let attendees = localStorage.getItem('attendees');
+    if (attendees) {
+      this.attendees = JSON.parse(attendees);
+    }
+
+    let boats = localStorage.getItem('boats');
+    if (boats) {
+      this.boats = JSON.parse(boats);
+    }
+  }
+
+  timeLeft: number = 60;
+  interval: any;
+
+  startAutosave() {
+    this.interval = setInterval(() => {
+      if (this.isAutosaveChecked) {
+        this.saveData();
+      } else {
+        localStorage.setItem(
+          'autosave',
+          this.isAutosaveChecked ? 'true' : 'false'
+        );
+      }
+    }, 1000);
+  }
+
+  stopAutosave() {
+    clearInterval(this.interval);
+  }
+
+  isAutosaveChecked: boolean;
+
   // implement OnInit's `ngOnInit` method
   ngOnInit() {
     this.isKidsTheme = localStorage.getItem('theme') === 'kids' ? true : false;
 
-    this.addRandomAttendee();
-    this.addRandomAttendee();
-    this.addRandomAttendee();
+    this.isAutosaveChecked =
+      localStorage.getItem('autosave') === 'false' ? false : true;
 
-    this.addRandomBoat();
-    this.addRandomBoat();
+    this.restoreData();
+
+    this.startAutosave();
+
+    if (!(this.solverArgs && Object.keys(this.solverArgs).length > 0)) {
+      this.resetSolverArgs();
+    }
+
+    if (!(this.attendees && this.attendees.length > 0)) {
+      this.addRandomAttendee();
+      this.addRandomAttendee();
+      this.addRandomAttendee();
+    }
+
+    if (!(this.boats && this.boats.length > 0)) {
+      this.addRandomBoat();
+      this.addRandomBoat();
+    }
+  }
+
+  onResetSolverArgs() {
+    this.resetSolverArgs();
+    this.saveData();
+  }
+
+  resetSolverArgs() {
+    this.solverArgs = {
+      sail_experience_as_captain: 'капитан',
+      skipper_rating_threshold: 0.5,
+      kids_age_threshold: 14,
+      no_kids_tag: 'no-kids',
+      lambda_weight: 10,
+      gender_disparity_weight: 100,
+    };
+  }
+
+  reportProblem() {
+    const dialogRef = this.dialog.open(EditDialogComponent, {
+      width: '600px',
+      enterAnimationDuration: '100ms',
+      exitAnimationDuration: '700ms',
+      data: {
+        attendees: this.attendees,
+        solverArgs: this.solverArgs,
+        boats: this.boats,
+        consatisfactionResponse: this.consatisfactionResponse,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result: string | number) => {
+      // alert('Thank you!');
+    });
   }
 
   title = 'Лодочник'; // (⍺-тестирование)
-  attendees: Attendee[] = [];
   groupsCount: number = 5;
-  solverArgs: Args = {
-    sail_experience_as_captain: 'капитан',
-    skipper_rating_threshold: 0.5,
-    kids_age_threshold: 14,
-    no_kids_tag: 'no-kids',
-    lambda_weight: 10,
-    gender_disparity_weight: 100,
-  };
-  boats: Boat[] = [];
+  attendees: Attendee[];
+  solverArgs: Args;
+  boats: Boat[];
 
   consatisfactionComputing: boolean = false;
 
@@ -71,6 +170,14 @@ export class AppComponent implements OnInit {
     } else {
       cabin.berths = 2;
     }
+  }
+
+  onDeleteAllBoats() {
+    this.boats = [];
+  }
+
+  onDeleteAllAtteendees() {
+    this.attendees = [];
   }
 
   onDelete(attendee: Attendee) {
