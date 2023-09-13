@@ -15,8 +15,9 @@ body {
 $dark-theme: mat.define-dark-theme(
   (
     color: (
-      primary: mat.define-palette(mat.$pink-palette),
-      accent: mat.define-palette(mat.$blue-grey-palette),
+      primary: mat.define-palette(mat.$blue-grey-palette),
+      accent: mat.define-palette(mat.$pink-palette),
+      warn: mat.define-palette(mat.$deep-orange-palette),
     ),
     // Only include `typography` and `density` in the default dark theme.
     typography:
@@ -31,28 +32,31 @@ $dark-theme: mat.define-dark-theme(
 $light-theme: mat.define-light-theme(
   (
     color: (
-      primary: mat.define-palette(mat.$indigo-palette),
-      accent: mat.define-palette(mat.$pink-palette),
+      primary: mat.define-palette(mat.$teal-palette),
+      accent: mat.define-palette(mat.$light-blue-palette),
+      warn: mat.define-palette(mat.$deep-orange-palette),
     ),
   )
 );
 
-// Apply the dark theme by default
-// @include mat.core-theme($dark-theme);
-// @include mat.button-theme($dark-theme);
-@include mat.all-component-themes($dark-theme);
+// Apply the light theme by default
+// @include mat.core-theme($light-theme);
+// @include mat.button-theme($light-theme);
+@include mat.all-component-themes($light-theme);
 
-// Apply the light theme only when the user prefers light themes.
-@media (prefers-color-scheme: light) {
+// Apply the dark theme only when the user prefers dark themes.
+@media (prefers-color-scheme: dark) {
   // Use the `-color` mixins to only apply color styles without reapplying the same
   // typography and density styles.
-  @include mat.core-color($light-theme);
-  @include mat.button-color($light-theme);
+  //@include mat.core-color($dark-theme);
+  //@include mat.button-color($dark-theme);
+  @include mat.all-component-themes($dark-theme);
 }
 
 .kids-theme {
   $kids-primary: mat.define-palette(mat.$cyan-palette);
   $kids-accent: mat.define-palette(mat.$yellow-palette);
+  $kids-warn: mat.define-palette(mat.$red-palette);
 
   // Typography config based on the default, but using "Comic Sans" as the
   // default font family for all levels.
@@ -66,6 +70,7 @@ $light-theme: mat.define-light-theme(
       color: (
         primary: $kids-primary,
         accent: $kids-accent,
+        warn: $kids-warn,
       ),
       typography: $kids-typography,
     )
