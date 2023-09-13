@@ -19,6 +19,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [AppComponent, AttendeesListComponent],
@@ -41,6 +42,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatSidenavModule,
     MatTabsModule,
     MatProgressBarModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

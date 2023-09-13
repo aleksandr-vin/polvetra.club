@@ -52,25 +52,19 @@
           </span>
         </h2>
 
-        <ul>
-          <mat-list role="list">
-            <mat-list-item
-              role="listitem"
-              *ngFor="let boat of boats; let i = index"
-            >
-              Boat {{ i }} cabins berths:
-              <span *ngFor="let cabin of boat.cabins; let isLast = last"
-                >{{ cabin.berths }}{{ isLast ? "" : ", " }} </span
-              ><button
-                mat-icon-button
-                color="warn"
-                (click)="onDeleteBoat(boat)"
-              >
-                <mat-icon>delete</mat-icon>
-              </button>
-            </mat-list-item>
-          </mat-list>
-        </ul>
+        <mat-list role="list">
+          <mat-list-item
+            role="listitem"
+            *ngFor="let boat of boats; let i = index"
+          >
+            Boat {{ i }} cabins berths:
+            <span *ngFor="let cabin of boat.cabins; let isLast = last"
+              >{{ cabin.berths }}{{ isLast ? "" : ", " }} </span
+            ><button mat-icon-button color="warn" (click)="onDeleteBoat(boat)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
       </section>
 
       <section>
@@ -82,8 +76,8 @@
       </section>
 
       <section>
-        <h2 class="mat-h2">Assignments</h2>
-        <p>
+        <h2 class="mat-h2">
+          Assignments
           <button
             mat-raised-button
             color="accent"
@@ -91,7 +85,7 @@
           >
             <mat-icon>assignment</mat-icon> Assign attendees to boats
           </button>
-        </p>
+        </h2>
 
         <mat-progress-bar
           *ngIf="consatisfactionComputing"
@@ -101,57 +95,65 @@
         </mat-progress-bar>
 
         <div *ngIf="consatisfactionResponse">
-          <pre *ngIf="consatisfactionResponseStats">
-    solution: {{ consatisfactionResponse.result.solution.toString() }}
-    captain_groups: {{
-              consatisfactionResponse.result.captain_groups.toString()
-            }}
-    kids_groups: {{ consatisfactionResponse.result.kids_groups.toString() }}
-    no_kids_groups: {{
-              consatisfactionResponse.result.no_kids_groups.toString()
-            }}
-    odd_gender_groups: {{
-              consatisfactionResponse.result.odd_gender_groups.toString()
-            }}
-    
-    capacities: {{ consatisfactionResponse.result.capacities.toString() }}
-    boats: {{ consatisfactionResponseResultBoats }}
-    
-    objective_value: {{ consatisfactionResponse.result.objective_value }}
-    gender_disparity_weight: {{
-              consatisfactionResponse.result.gender_disparity_weight
-            }}
-    lambda_weight: {{ consatisfactionResponse.result.lambda_weight }}
+          <mat-accordion>
+            <mat-expansion-panel
+              (opened)="consatisfactionResponseStatsOpenState = true"
+              (closed)="consatisfactionResponseStatsOpenState = false"
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>Details</mat-panel-title>
+                <mat-panel-description>
+                  Some details about how computation was done
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <pre *ngIf="consatisfactionResponseStatsOpenState">
+solution: {{ consatisfactionResponse.result.solution.toString() }}
+captain_groups: {{ consatisfactionResponse.result.captain_groups.toString() }}
+kids_groups: {{ consatisfactionResponse.result.kids_groups.toString() }}
+no_kids_groups: {{ consatisfactionResponse.result.no_kids_groups.toString() }}
+odd_gender_groups: {{
+                  consatisfactionResponse.result.odd_gender_groups.toString()
+                }}
+                  
+capacities: {{ consatisfactionResponse.result.capacities.toString() }}
+boats: {{ consatisfactionResponseResultBoats }}
+                  
+objective_value: {{ consatisfactionResponse.result.objective_value }}
+gender_disparity_weight: {{
+                  consatisfactionResponse.result.gender_disparity_weight
+                }}
+lambda_weight: {{ consatisfactionResponse.result.lambda_weight }}
+              
+args: {{ consatisfactionResponseArgs }}
+meta: {{ consatisfactionResponseMeta }}
+consatisfaction_gversion_info: {{
+                  consatisfactionResponse.consatisfaction_version_info
+                }}
+                </pre
+              >
+            </mat-expansion-panel>
+          </mat-accordion>
 
-    args: {{ consatisfactionResponseArgs }}
-    meta: {{ consatisfactionResponseMeta }}
-    consatisfaction_gversion_info: {{
-              consatisfactionResponse.consatisfaction_version_info
-            }}
-  </pre
-          >
-
-          <ol>
-            <div
+          <mat-list role="list">
+            <mat-list-item
+              role="listitem"
               *ngFor="
                 let group of consatisfactionResponse.result.groups;
                 let i = index
               "
             >
-              <li>
-                Boat
-                {{
-                  consatisfactionResponse.result.solution &&
-                  consatisfactionResponse.result.solution.length > 0
-                    ? consatisfactionResponse.result.solution[i]
-                    : "-"
-                }}:
-                <span *ngFor="let attendee of group; let isLast = last"
-                  >{{ attendee.name }}{{ isLast ? "" : ", " }}
-                </span>
-              </li>
-            </div>
-          </ol>
+              Boat
+              {{
+                consatisfactionResponse.result.solution &&
+                consatisfactionResponse.result.solution.length > 0
+                  ? consatisfactionResponse.result.solution[i]
+                  : "-"
+              }}:
+              <span *ngFor="let attendee of group; let isLast = last"
+                >{{ attendee.name }}{{ isLast ? "" : ", " }}
+              </span>
+            </mat-list-item>
+          </mat-list>
         </div>
       </section>
     </mat-tab>
