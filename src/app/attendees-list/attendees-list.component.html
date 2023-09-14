@@ -83,7 +83,7 @@
         *ngIf="isEditing(element, 'age')"
         class="example-full-width"
       >
-        <input matInput [(ngModel)]="element.age" />
+        <input matInput type="number" [(ngModel)]="element.age" />
       </mat-form-field>
     </td>
   </ng-container>
@@ -171,7 +171,7 @@
         *ngIf="isEditing(element, 'skipper_rating')"
         class="example-full-width"
       >
-        <input matInput [(ngModel)]="element.skipper_rating" />
+        <input matInput type="number" [(ngModel)]="element.skipper_rating" />
       </mat-form-field>
     </td>
   </ng-container>
@@ -193,7 +193,7 @@
         *ngIf="isEditing(element, 'group_id')"
         class="example-full-width"
       >
-        <input matInput [(ngModel)]="element.group_id" />
+        <input matInput type="number" [(ngModel)]="element.group_id" />
       </mat-form-field>
     </td>
   </ng-container>
