@@ -3,7 +3,7 @@ export interface Attendee {
   surname: string;
   age: number;
   gender: 'F' | 'M';
-  sail_exp: 'капитан' | 'матрос' | 'пассажир' | 'ни разу не бывал на яхте';
+  sail_exp: string;
   skipper_rating: number;
   group_id: number;
   tags: string;
