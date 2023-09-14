@@ -18,7 +18,7 @@
         "locales": {
           "ru": {
             "translation": "src/locale/messages.ru.xlf",
-            "baseHref": "/ru-RU/"
+            "baseHref": "/ru-RU"
           }
         }
       },
