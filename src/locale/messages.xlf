@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="614361327774813833" datatype="html">
+        <source>Boater</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <note priority="1" from="description">App title</note>
+      </trans-unit>
+      <trans-unit id="3815928829326879804" datatype="html">
+        <source>Main</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <note priority="1" from="description">{Main tab}</note>
+      </trans-unit>
+      <trans-unit id="5976246829520561412" datatype="html">
+        <source>Boats</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <note priority="1" from="description">A title for boats list</note>
+      </trans-unit>
+      <trans-unit id="577038887888857351" datatype="html">
+        <source> Add </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">52,54</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attendees-list/attendees-list.component.html</context>
+          <context context-type="linenumber">13,15</context>
+        </context-group>
+        <note priority="1" from="description">Add boat button</note>
+      </trans-unit>
+      <trans-unit id="3912756159183047082" datatype="html">
+        <source> Remove all </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">61,63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attendees-list/attendees-list.component.html</context>
+          <context context-type="linenumber">22,24</context>
+        </context-group>
+        <note priority="1" from="description">Remove all boats button</note>
+      </trans-unit>
+      <trans-unit id="1863369567683243805" datatype="html">
+        <source>Boat <x id="INTERPOLATION" equiv-text="{{ i }}"/> cabins berths:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7553686504790271169" datatype="html">
+        <source>Problems?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5126965938337368807" datatype="html">
+        <source>Report a problem</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/report-dialog/report-dialog.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <note priority="1" from="description">Report a problem button</note>
+      </trans-unit>
+      <trans-unit id="2914838362230996764" datatype="html">
+        <source>Assign attendees to boats</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">110</context>
+        </context-group>
+        <note priority="1" from="description">Assign attendees to boats button</note>
+      </trans-unit>
+      <trans-unit id="606803434393597038" datatype="html">
+        <source> Details</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">148,149</context>
+        </context-group>
+        <note priority="1" from="description">Computation details</note>
+        <note priority="1" from="meaning">Details title</note>
+      </trans-unit>
+      <trans-unit id="53746698126458392" datatype="html">
+        <source> Some details about how computation was done </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">151,153</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6652459898210637178" datatype="html">
+        <source>solution:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">156</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4991191704575055529" datatype="html">
+        <source>captain_groups:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">157</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3463591000056282533" datatype="html">
+        <source>kids_groups:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">158</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3318351381543754655" datatype="html">
+        <source>no_kids_groups:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">159</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6621440775081051743" datatype="html">
+        <source>odd_gender_groups:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">160</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1745938209117548905" datatype="html">
+        <source>capacities:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">164</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6985161904874515889" datatype="html">
+        <source>boats:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">165</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9166031622498848103" datatype="html">
+        <source>objective_value:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">167</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4490951722174833694" datatype="html">
+        <source>gender_disparity_weight:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">168</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">243</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5069090534337374034" datatype="html">
+        <source>lambda_weight:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">171</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">235</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8119112816040021315" datatype="html">
+        <source>args:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">173</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8324646794962508613" datatype="html">
+        <source>meta:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">174</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6044910673273515079" datatype="html">
+        <source>consatisfaction_gversion_info:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">175</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4930506384627295710" datatype="html">
+        <source>Settings</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">185</context>
+        </context-group>
+        <note priority="1" from="description">{Settings tab}</note>
+      </trans-unit>
+      <trans-unit id="3453652669463132305" datatype="html">
+        <source> Solution parameters </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">186,188</context>
+        </context-group>
+        <note priority="1" from="description">Section title</note>
+        <note priority="1" from="meaning">Solution parameters</note>
+      </trans-unit>
+      <trans-unit id="8657538109191212693" datatype="html">
+        <source> Reset to defaults </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">195,197</context>
+        </context-group>
+        <note priority="1" from="description">Reset to defaults button</note>
+      </trans-unit>
+      <trans-unit id="3601230351166292618" datatype="html">
+        <source>sail_experience_as_captain:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">200</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4866604080321788737" datatype="html">
+        <source>skipper_rating_threshold:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">211</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3324824654164114943" datatype="html">
+        <source>kids_age_threshold:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">219</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5198045381670536484" datatype="html">
+        <source>no_kids_tag:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">227</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8407344373740215093" datatype="html">
+        <source>Web parameters</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">251</context>
+        </context-group>
+        <note priority="1" from="description">Section title</note>
+        <note priority="1" from="meaning">Web parameters</note>
+      </trans-unit>
+      <trans-unit id="4311182743124432830" datatype="html">
+        <source>Autosave:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">253</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8291262399353359697" datatype="html">
+        <source>Attendees</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attendees-list/attendees-list.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <note priority="1" from="description">A title for attendees table</note>
+      </trans-unit>
+      <trans-unit id="8778616811237742446" datatype="html">
+        <source> Name </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attendees-list/attendees-list.component.html</context>
+          <context context-type="linenumber">38,40</context>
+        </context-group>
+        <note priority="1" from="description">Attendee Name column header</note>
+      </trans-unit>
+      <trans-unit id="3797052344320096640" datatype="html">
+        <source> Surname </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attendees-list/attendees-list.component.html</context>
+          <context context-type="linenumber">67,69</context>
+        </context-group>
+        <note priority="1" from="description">Attendee Surname column header</note>
+      </trans-unit>
+      <trans-unit id="5030518860435159082" datatype="html">
+        <source> Age </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attendees-list/attendees-list.component.html</context>
+          <context context-type="linenumber">96,98</context>
+        </context-group>
+        <note priority="1" from="description">Attendee age column header</note>
+      </trans-unit>
+      <trans-unit id="5891903703576823833" datatype="html">
+        <source> Tags </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attendees-list/attendees-list.component.html</context>
+          <context context-type="linenumber">125,127</context>
+        </context-group>
+        <note priority="1" from="description">Attendee tags</note>
+        <note priority="1" from="meaning">Column header</note>
+      </trans-unit>
+      <trans-unit id="2828099469321045929" datatype="html">
+        <source> Gender </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attendees-list/attendees-list.component.html</context>
+          <context context-type="linenumber">154,156</context>
+        </context-group>
+        <note priority="1" from="description">Attendee gender column header</note>
+      </trans-unit>
+      <trans-unit id="3441435750846278490" datatype="html">
+        <source> Sail Experience </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attendees-list/attendees-list.component.html</context>
+          <context context-type="linenumber">183,185</context>
+        </context-group>
+        <note priority="1" from="description">Attendee sail experience column header</note>
+      </trans-unit>
+      <trans-unit id="5734445759937044517" datatype="html">
+        <source> Skipper Rating </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attendees-list/attendees-list.component.html</context>
+          <context context-type="linenumber">212,214</context>
+        </context-group>
+        <note priority="1" from="description">Attendee skipper rating column header</note>
+      </trans-unit>
+      <trans-unit id="439255575074607244" datatype="html">
+        <source> Group ID </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attendees-list/attendees-list.component.html</context>
+          <context context-type="linenumber">241,243</context>
+        </context-group>
+        <note priority="1" from="description">Attendee group id</note>
+        <note priority="1" from="meaning">attendee group id column header</note>
+      </trans-unit>
+      <trans-unit id="6660925946511264619" datatype="html">
+        <source> Delete </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/attendees-list/attendees-list.component.html</context>
+          <context context-type="linenumber">270,272</context>
+        </context-group>
+        <note priority="1" from="description">Attendees delete action (button) column header</note>
+      </trans-unit>
+      <trans-unit id="6682630578068047627" datatype="html">
+        <source>Describe it:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/report-dialog/report-dialog.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">Describe it: label</note>
+      </trans-unit>
+      <trans-unit id="4692093507108709020" datatype="html">
+        <source> Cancel </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/report-dialog/report-dialog.component.html</context>
+          <context context-type="linenumber">14,16</context>
+        </context-group>
+        <note priority="1" from="description">Close Reporta a problem dialog</note>
+        <note priority="1" from="meaning">Close dialog button</note>
+      </trans-unit>
+      <trans-unit id="7580064649528182093" datatype="html">
+        <source>Open email draft</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/report-dialog/report-dialog.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <note priority="1" from="description">link text</note>
+        <note priority="1" from="meaning">Open email draft</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

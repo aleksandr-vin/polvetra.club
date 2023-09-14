@@ -40,15 +40,15 @@ export class EditDialogComponent {
   emailLinkPrefix: string = `mailto:aleksandr.vin@gmail.com?subject=Problem with alpha-testing, polvetra.club&body=`;
 
   ngOnInit(): void {
-    this.message = `Hi, I've found an issue.
+    this.message = $localize`Hi, I've found an issue.
 I think that result should be this ...`;
 
-    this.metadata = `
+    this.metadata = $localize`
 
 
 Inputs and solution data:
 
-${JSON.stringify(this.data)}
+` + ${JSON.stringify(this.data)} + $localize`
 
 Browser info: ${navigator.userAgent}
 `;

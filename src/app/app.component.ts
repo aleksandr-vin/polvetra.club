@@ -6,11 +6,7 @@ import {
   ConsatisfactionResponse,
   ConsatisfactionService,
 } from './consatisfaction.service';
-import {
-  MatDialog,
-  MatDialogRef,
-  MatDialogModule,
-} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { EditDialogComponent } from './report-dialog/report-dialog.component';
 import { deflateRaw, inflateRaw } from 'pako';
 import { Router } from '@angular/router';
@@ -260,7 +256,6 @@ export class AppComponent implements OnInit {
     navigator.share({ url: location.href });
   }
 
-  title = 'Лодочник'; // (⍺-тестирование)
   groupsCount: number = 5;
   attendees: Attendee[] = [];
   solverArgs: Args;

@@ -9,7 +9,7 @@
       <!-- <mat-icon>sailing</mat-icon> -->
       <mat-icon>waves</mat-icon>
     </button>
-    <span>{{ title }}</span>
+    <span i18n="App title">Boater</span>
     <span class="example-spacer"></span>
     <div>
       <button mat-icon-button (click)="toggleKidsTheme()">
@@ -35,12 +35,14 @@
   </mat-toolbar>
 
   <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-    <mat-tab label="Main">
+    <mat-tab i18n-label="{Main tab}" label="Main">
       <section>
         <h2 class="mat-h2">
-          Boats
           <span class="demo-section">
+            <ng-container i18n="A title for boats list">Boats</ng-container>
+            &nbsp;
             <button
+              i18n="Add boat button"
               mat-raised-button
               color="primary"
               matBadge="{{ boats.length }}"
@@ -51,14 +53,19 @@
               Add
             </button>
             &nbsp;
-            <button mat-raised-button color="warn" (click)="onDeleteAllBoats()">
+            <button
+              i18n="Remove all boats button"
+              mat-raised-button
+              color="warn"
+              (click)="onDeleteAllBoats()"
+            >
               Remove all
             </button>
           </span>
         </h2>
 
         <h3 class="mat-h3" *ngFor="let boat of boats; let i = index">
-          Boat {{ i }} cabins berths:
+          <span i18n>Boat {{ i }} cabins berths:</span>
           <mat-button-toggle-group name="berths">
             <div *ngFor="let cabin of boat.cabins; let i = index">
               <mat-button-toggle (click)="changeBerths(boat.cabins, i)">{{
@@ -83,9 +90,10 @@
 
       <section>
         <h2 class="mat-h2">
-          Problems?
+          <span i18n>Problems?</span>
           <button mat-raised-button color="warn" (click)="reportProblem()">
-            <mat-icon>report</mat-icon> Report a problem
+            <mat-icon>report</mat-icon>
+            <span i18n="Report a problem button">Report a problem</span>
           </button>
         </h2>
 
@@ -97,7 +105,10 @@
             [disabled]="consatisfactionComputing"
             (click)="assignAttendeesToBoats()"
           >
-            <mat-icon>assignment</mat-icon> Assign attendees to boats
+            <mat-icon>assignment</mat-icon>
+            <span i18n="Assign attendees to boats button"
+              >Assign attendees to boats</span
+            >
           </button>
         </h2>
 
@@ -134,51 +145,59 @@
           <mat-accordion>
             <mat-expansion-panel>
               <mat-expansion-panel-header>
-                <mat-panel-title>Details</mat-panel-title>
-                <mat-panel-description>
+                <mat-panel-title i18n="Details title|Computation details">
+                  Details</mat-panel-title
+                >
+                <mat-panel-description i18n>
                   Some details about how computation was done
                 </mat-panel-description>
               </mat-expansion-panel-header>
               <pre>
-solution: {{ consatisfactionResponse.result.solution.toString() }}
-captain_groups: {{ consatisfactionResponse.result.captain_groups.toString() }}
-kids_groups: {{ consatisfactionResponse.result.kids_groups.toString() }}
-no_kids_groups: {{ consatisfactionResponse.result.no_kids_groups.toString() }}
-odd_gender_groups: {{
+<ng-container i18n>solution:</ng-container> {{ consatisfactionResponse.result.solution.toString() }}
+<ng-container i18n>captain_groups:</ng-container> {{ consatisfactionResponse.result.captain_groups.toString() }}
+<ng-container i18n>kids_groups:</ng-container> {{ consatisfactionResponse.result.kids_groups.toString() }}
+<ng-container i18n>no_kids_groups:</ng-container> {{ consatisfactionResponse.result.no_kids_groups.toString() }}
+<ng-container i18n>odd_gender_groups:</ng-container> {{
                   consatisfactionResponse.result.odd_gender_groups.toString()
                 }}
                   
-capacities: {{ consatisfactionResponse.result.capacities.toString() }}
-boats: {{ consatisfactionResponseResultBoats }}
+<ng-container i18n>capacities:</ng-container> {{ consatisfactionResponse.result.capacities.toString() }}
+<ng-container i18n>boats:</ng-container> {{ consatisfactionResponseResultBoats }}
                   
-objective_value: {{ consatisfactionResponse.result.objective_value }}
-gender_disparity_weight: {{
+<ng-container i18n>objective_value:</ng-container> {{ consatisfactionResponse.result.objective_value }}
+<ng-container i18n>gender_disparity_weight:</ng-container> {{
                   consatisfactionResponse.result.gender_disparity_weight
                 }}
-lambda_weight: {{ consatisfactionResponse.result.lambda_weight }}
+<ng-container i18n>lambda_weight:</ng-container> {{ consatisfactionResponse.result.lambda_weight }}
               
-args: {{ consatisfactionResponseArgs }}
-meta: {{ consatisfactionResponseMeta }}
-consatisfaction_gversion_info: {{
+<ng-container i18n>args:</ng-container> {{ consatisfactionResponseArgs }}
+<ng-container i18n>meta:</ng-container> {{ consatisfactionResponseMeta }}
+<ng-container i18n>consatisfaction_gversion_info:</ng-container> {{
                   consatisfactionResponse.consatisfaction_version_info
                 }}
-                </pre
-              >
+                </pre>
             </mat-expansion-panel>
           </mat-accordion>
         </div>
       </section>
     </mat-tab>
 
-    <mat-tab label="Settings">
-      <h2 class="mat-h2">Solution parameters</h2>
+    <mat-tab i18n-label="{Settings tab}" label="Settings">
+      <h2 i18n="Solution parameters|Section title" class="mat-h2">
+        Solution parameters
+      </h2>
       <p>
-        <button mat-raised-button color="warn" (click)="onResetSolverArgs()">
+        <button
+          i18n="Reset to defaults button"
+          mat-raised-button
+          color="warn"
+          (click)="onResetSolverArgs()"
+        >
           Reset to defaults
         </button>
       </p>
       <h3 class="mat-h3">
-        sail_experience_as_captain:
+        <ng-container i18n>sail_experience_as_captain:</ng-container>
         <span
           ><mat-form-field appearance="fill">
             <input
@@ -189,7 +208,7 @@ consatisfaction_gversion_info: {{
         </span>
       </h3>
       <h3 class="mat-h3">
-        skipper_rating_threshold:
+        <ng-container i18n>skipper_rating_threshold:</ng-container>
         <span
           ><mat-form-field appearance="fill">
             <input matInput [(ngModel)]="solverArgs.skipper_rating_threshold" />
@@ -197,7 +216,7 @@ consatisfaction_gversion_info: {{
         </span>
       </h3>
       <h3 class="mat-h3">
-        kids_age_threshold:
+        <ng-container i18n>kids_age_threshold:</ng-container>
         <span
           ><mat-form-field appearance="fill">
             <input matInput [(ngModel)]="solverArgs.kids_age_threshold" />
@@ -205,7 +224,7 @@ consatisfaction_gversion_info: {{
         </span>
       </h3>
       <h3 class="mat-h3">
-        no_kids_tag:
+        <ng-container i18n>no_kids_tag:</ng-container>
         <span
           ><mat-form-field appearance="fill">
             <input matInput [(ngModel)]="solverArgs.no_kids_tag" />
@@ -213,7 +232,7 @@ consatisfaction_gversion_info: {{
         </span>
       </h3>
       <h3 class="mat-h3">
-        lambda_weight:
+        <ng-container i18n>lambda_weight:</ng-container>
         <span
           ><mat-form-field appearance="fill">
             <input matInput [(ngModel)]="solverArgs.lambda_weight" />
@@ -221,7 +240,7 @@ consatisfaction_gversion_info: {{
         </span>
       </h3>
       <h3 class="mat-h3">
-        gender_disparity_weight:
+        <ng-container i18n>gender_disparity_weight:</ng-container>
         <span
           ><mat-form-field appearance="fill">
             <input matInput [(ngModel)]="solverArgs.gender_disparity_weight" />
@@ -229,9 +248,9 @@ consatisfaction_gversion_info: {{
         </span>
       </h3>
 
-      <h2 class="mat-h2">Web parameters</h2>
+      <h2 i18n="Web parameters|Section title" class="mat-h2">Web parameters</h2>
       <h3 class="mat-h3">
-        Autosave:
+        <ng-container i18n>Autosave:</ng-container>
         <mat-slide-toggle [(ngModel)]="isAutosaveChecked"></mat-slide-toggle>
       </h3>
     </mat-tab>
