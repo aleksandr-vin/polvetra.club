@@ -24,13 +24,14 @@
     >
       <mat-icon>favorite</mat-icon>
     </button> -->
-    <!-- <button
+    <button
       mat-icon-button
       class="example-icon"
+      (click)="onShare()"
       aria-label="Example icon-button with share icon"
     >
       <mat-icon>share</mat-icon>
-    </button> -->
+    </button>
   </mat-toolbar>
 
   <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
@@ -82,6 +83,13 @@
 
       <section>
         <h2 class="mat-h2">
+          Problems?
+          <button mat-raised-button color="warn" (click)="reportProblem()">
+            <mat-icon>report</mat-icon> Report a problem
+          </button>
+        </h2>
+
+        <h2 class="mat-h2">
           Assignments
           <button
             mat-raised-button
@@ -90,10 +98,6 @@
             (click)="assignAttendeesToBoats()"
           >
             <mat-icon>assignment</mat-icon> Assign attendees to boats
-          </button>
-          &nbsp;
-          <button mat-raised-button color="warn" (click)="reportProblem()">
-            <mat-icon>report</mat-icon> Report a problem
           </button>
         </h2>
 

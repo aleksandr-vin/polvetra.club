@@ -256,6 +256,10 @@ export class AppComponent implements OnInit {
     });
   }
 
+  onShare() {
+    navigator.share({ url: location.href });
+  }
+
   title = 'Лодочник'; // (⍺-тестирование)
   groupsCount: number = 5;
   attendees: Attendee[] = [];
