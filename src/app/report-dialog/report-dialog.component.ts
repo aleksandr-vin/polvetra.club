@@ -37,21 +37,27 @@ export class EditDialogComponent {
 
   message: string;
   metadata: string;
-  emailLinkPrefix: string = `mailto:aleksandr.vin@gmail.com?subject=Problem with alpha-testing, polvetra.club&body=`;
+  emailLinkPrefix: string =
+    `mailto:aleksandr.vin@gmail.com?subject=` +
+    $localize`Problem with alpha-testing` +
+    `, polvetra.club&body=`;
 
   ngOnInit(): void {
     this.message = $localize`Hi, I've found an issue.
 I think that result should be this ...`;
 
-    this.metadata = $localize`
+    this.metadata =
+      $localize`
 
 
 Inputs and solution data:
 
-` + ${JSON.stringify(this.data)} + $localize`
+` +
+      JSON.stringify(this.data) +
+      $localize`
 
-Browser info: ${navigator.userAgent}
-`;
+Browser info: ` +
+      navigator.userAgent;
   }
 
   onNoClick(): void {
