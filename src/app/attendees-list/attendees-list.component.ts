@@ -34,19 +34,23 @@ export class AttendeesListComponent {
     );
   }
 
+  reload() {
+    this.dataSource = new MatTableDataSource(this.attendees);
+  }
+
   onAdd() {
     this.add.emit();
-    this.dataSource = new MatTableDataSource(this.attendees);
+    setTimeout(() => this.reload(), 0);
   }
 
   onDelete($event: Attendee) {
     this.delete.emit($event);
-    this.dataSource = new MatTableDataSource(this.attendees);
+    setTimeout(() => this.reload(), 0);
   }
 
   onDeleteAll() {
     this.deleteAll.emit();
-    this.dataSource = new MatTableDataSource(this.attendees);
+    setTimeout(() => this.reload(), 0);
   }
 
   dataSource: MatTableDataSource<Attendee, MatTableDataSourcePaginator>;
