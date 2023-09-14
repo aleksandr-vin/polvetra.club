@@ -2,6 +2,7 @@ export interface Boat {
   cabins: Cabin[];
 }
 
-export interface Cabin {
-  berths: number;
-}
+/**
+ * Number of berths
+ */
+export type Cabin = number;

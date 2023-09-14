@@ -59,9 +59,9 @@
         <h3 class="mat-h3" *ngFor="let boat of boats; let i = index">
           Boat {{ i }} cabins berths:
           <mat-button-toggle-group name="berths">
-            <div *ngFor="let cabin of boat.cabins; let isLast = last">
-              <mat-button-toggle (click)="changeBerths(cabin)">{{
-                cabin.berths
+            <div *ngFor="let cabin of boat.cabins; let i = index">
+              <mat-button-toggle (click)="changeBerths(boat.cabins, i)">{{
+                cabin
               }}</mat-button-toggle>
             </div>
           </mat-button-toggle-group>

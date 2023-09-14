@@ -48,7 +48,7 @@ export class ConsatisfactionService {
   getSolutionFor(args: Args, boats: Boat[], attendees: Attendee[]) {
     let payload: ConsatisfactionRequest = {
       args: args,
-      boats: boats.map((boat) => boat.cabins.map((cabin) => cabin.berths)),
+      boats: boats.map((boat) => boat.cabins),
       attendees: attendees,
     };
     return this.http.post<ConsatisfactionResponse>(this.configUrl, payload, {

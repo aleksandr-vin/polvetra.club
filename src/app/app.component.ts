@@ -264,11 +264,11 @@ export class AppComponent implements OnInit {
 
   consatisfactionComputing: boolean = false;
 
-  changeBerths(cabin: Cabin) {
-    if (cabin.berths == 2) {
-      cabin.berths = 1;
+  changeBerths(cabins: Cabin[], index: number) {
+    if (cabins[index] == 2) {
+      cabins[index] = 1;
     } else {
-      cabin.berths = 2;
+      cabins[index] = 2;
     }
   }
 
@@ -305,7 +305,7 @@ export class AppComponent implements OnInit {
 
     Array.from(Array(randomChoice([1, 2, 3, 4, 5])).keys()).forEach(
       (element) => {
-        cabins.push({ berths: randomChoice([1, 2, 2, 2]) });
+        cabins.push(randomChoice([1, 2, 2, 2]));
       }
     );
     this.boats.push({
