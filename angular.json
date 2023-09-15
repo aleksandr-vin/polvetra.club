@@ -18,7 +18,7 @@
         "locales": {
           "ru": {
             "translation": "src/locale/messages.ru.xlf",
-            "baseHref": "/ru-RU"
+            "baseHref": ""
           }
         }
       },
@@ -26,7 +26,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "localize": true,
+            "localize": false,
             "outputPath": "dist/polvetra.club",
             "index": "src/index.html",
             "main": "src/main.ts",
